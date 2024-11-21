@@ -1,48 +1,60 @@
-# Django-Email-Sender
-Send email from Gmail Id in Django using HTML Template
 
-## Pre-Requisites
+# Django-Email-Yuboruvchi
+HTML shabloni yordamida Gmail orqali Django-dan email yuborish.
+
+## Oldindan talab qilinadigan dasturlar
 - Python 3.8
 - Pip
 - Git
 
-## Steps to run:
+## Ishga tushirish bosqichlari:
 
-- Clone the project using the command **git clone https://github.com/sukanya-pai/Django-Email-Sender.git**
+1. **Loyihani klonlash:**
+   Quyidagi buyruq yordamida loyihani klonlang:
+   ```bash
+   git clone https://github.com/sukanya-pai/Django-Email-Sender.git
+   ```
 
-- In PipFile, the dependencies are mentioned. It is recommended to run the app inside a virtual environment to avoid conflict of existing dependencies.
+2. **Virtual muhit yaratish va o‘rnatish:**
+   - `PipFile` ichida kerakli kutubxonalar ko‘rsatilgan. Kutubxona ziddiyatlarini oldini olish uchun virtual muhitda ishlash tavsiya etiladi.
+     ```bash
+     pip install pipenv
+     pipenv shell
+     pipenv install
+     ```
 
-  - Run the command `pip install pipenv`
+3. **Serverni ishga tushirish:**
+   ```bash
+   python email_project/manage.py runserver
+   ```
+   Keyin [http://127.0.0.1:8000/api/send-mail](http://127.0.0.1:8000/api/send-mail) havolasini oching.
 
-  - Run `pipenv shell`. Creates virtual env
+4. **`views.py` faylida o‘zgarishlar kiriting:**
+   - **`email_sender_app` papkasidagi `views.py`** faylidan `send_mail()` metodini toping va unda quyidagi ma'lumotlarni yangilang:
+     - O‘z email manzilingiz
+     - Qabul qiluvchining email manzili.
 
-  - Run `pipenv install`. Installs dependencies from the PipFile and creates PipFile.lock
+5. **`settings.py` faylida o‘zgarishlar kiriting:**
+   - **`email_project` papkasidagi `settings.py`** faylidan quyidagi o‘zgarishlarni bajaring:
+     - Gmail email manzilingiz va App Password qo‘shing.
+     ```python
+     EMAIL_HOST_USER = 'your-email@gmail.com'
+     EMAIL_HOST_PASSWORD = 'your-app-password'
+     ```
+     - Ushbu loyiha namuna sifatida tayyorlanganligi sababli, App Password bevosita `settings.py` faylida yozilgan. **Xavfsizlik sababli**, ushbu ma'lumotni shifrlash yoki maxfiy kalitlarda saqlash tavsiya etiladi.
 
-  - Run `python email_project/manage.py runserver` to start the server
+6. **Host Gmail akkauntidagi majburiy sozlamalar:**
+   - [https://myaccount.google.com/security](https://myaccount.google.com/security) sahifasiga o‘ting.
+   - **"Signing in to Google"** bo‘limini toping:
+     - **"App Passwords"** opsiyasini tanlang. Quyidagi suratga qarang:
+     
+       ![img.png](images/path_to_app_pwd.png)
+       
+     - Akkaunt parolingizni kiriting va quyidagi bosqichlarga amal qiling:
+       
+       ![SetupAppPassword](images/setup_app_pwd.jpg)
 
-  - Open [http://127.0.0.1:8000/api/send-mail](http://127.0.0.1:8000/api/send-mail) to start
+   - Yuqoridagi bosqichlarni bajarishingiz orqali Django loyihangiz Gmail akkauntidan email yuboradi.
 
-- Make changes in the **views.py** file of the **email_sender_app** directory inside the `send_mail()` method to add your *mail address* and the *recipients mail address* accordingly.
-
-- Make changes in the **settings.py** of the **email_project** directory file with your **gmail id** and **your app password**. 
-
-  - Since this is a demo project, the password is written directly in settings.py. For security reasons of your account, it is recommended you store the password in key vault or encrypt it and then host the application or push your changes to GitHub.
-
-- Read [change log](change.log) to see what has changed.
-
-## Mandatory changes to be done in Host Gmail account
-- Go to https://myaccount.google.com/security
-
-- Scroll till you find **Signing in to Google**
-
-  - In that section, you will see the "App Passwords" option as shown in the below image.
-
-  ![img.png](images/path_to_app_pwd.png)
-
-  - When you click on **App Passwords**, you will be asked to enter your Gmail account password. Enter it and the page would open:
-
-  - Follow the below steps as shown in the image to setup your app password.
-
-  ![SetupAppPassword](images/setup_app_pwd.jpg)
-
-- Only if you follow the above steps, then you can send mail from your Gmail account using your django code. 
+## O‘zgarishlar tarixi
+- [change log](change.log) sahifasini o‘qing.
